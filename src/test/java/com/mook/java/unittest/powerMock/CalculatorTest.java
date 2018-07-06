@@ -38,6 +38,7 @@ public class CalculatorTest {
 
     @Test
     public void testSumXX() throws Exception {
+        // 创建了spy后，只有设置了mock的方法才会调用mock行为，否则就是调用真实方法
         Calculator powerMock = PowerMockito.spy(new Calculator());
         PowerMockito.when(powerMock, "sumXX", 1, 2).thenReturn(2);
         assertEquals(2, powerMock.callSumXX(1, 2));

@@ -57,6 +57,7 @@ public class UserServiceTest {
     @Test
     public void testCallPrivateMethod() throws Exception
     {
+        // PowerMockito.mock是全部mock；PowerMockito.spy是部分mock
         UserServiceImpl userService = PowerMockito.mock(UserServiceImpl.class);
         PowerMockito.when(userService.callPrivateMethod()).thenCallRealMethod();
         // mock私有方法

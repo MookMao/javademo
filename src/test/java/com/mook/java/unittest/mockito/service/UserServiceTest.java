@@ -31,7 +31,7 @@ public class UserServiceTest {
     private UserDao userDao;
 
     @Before
-    public void init() {
+    public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
     }
 
@@ -98,6 +98,8 @@ public class UserServiceTest {
         // 创建mock
         // UserDao userDao = mock(UserDao.class);
         Mockito.doThrow(new SQLException("SQL is not valid")).when(userDao).insertUser(any(User.class));
+        // mock void方法
+        // Mockito.doNothing().when(userDao).insertUser(any(User.class));
         // ((UserServiceImpl) userService).setUserDao(userDao);
 
         User user = new User();
