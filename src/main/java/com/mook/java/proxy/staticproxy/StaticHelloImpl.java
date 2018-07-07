@@ -6,7 +6,6 @@ package com.mook.java.proxy.staticproxy;
  * @Description:
  */
 public class StaticHelloImpl implements StaticHello {
-    @Override
     public void say() {
         System.out.println("hello");
     }

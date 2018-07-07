@@ -6,7 +6,5 @@ package com.mook.java.proxy.dynamicproxy;
  * @Description:
  */
 public interface Subject {
-    void rent();
-
     void hello(String str);
 }
