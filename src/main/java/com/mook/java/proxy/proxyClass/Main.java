@@ -8,7 +8,7 @@ import java.io.FileOutputStream;
 /**
  * @Author: maojunkai
  * @Date: 2018/7/7 下午3:42
- * @Description:
+ * @Description: 查看JDK动态代理运行时生成的委托类的字节码文件
  */
 public class Main {
     public static void main(String[] args) {
