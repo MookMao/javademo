@@ -2,6 +2,7 @@ package com.mook.java.cache.guava;
 
 import com.google.common.cache.*;
 
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -13,27 +14,29 @@ public class GuavaCacheDemo {
     public static void main(String[] args) {
         int initialCacheSize = 10;
         String invalidKey = "invalidKey";
-        CacheLoader<String, String> cacheLoader = new CacheLoader<String, String>() {
+        CacheLoader<Object, Object> cacheLoader = new CacheLoader<Object, Object>() {
             @Override
-            public String load(String s) throws Exception {
+            public Object load(Object s) throws Exception {
+                Optional<String> result = Optional.ofNullable(null);
                 if (invalidKey.equals(s)) {
                     // CacheLoader returned null将抛异常:InvalidCacheLoadException
                     // TODO:可以使用Optional包装null值 或者 返回没有实际值的对象
-                    return null;
+                    return result;
                 }
                 System.out.println(s + " is loaded from a cacheLoader!");
-                return s + "'s value";
+                result = Optional.ofNullable(s + "'s value");
+                return result;
             }
         };
 
-        RemovalListener<String, String> removalListener = new RemovalListener<String, String>() {
+        RemovalListener<Object, Object> removalListener = new RemovalListener<Object, Object>() {
             @Override
-            public void onRemoval(RemovalNotification<String, String> removal) {
+            public void onRemoval(RemovalNotification<Object, Object> removal) {
                 System.out.println("[" + removal.getKey() + ":" + removal.getValue() + "] is evicted!");
             }
         };
 
-        LoadingCache<String, String> loadingCache = CacheBuilder.newBuilder()
+        LoadingCache<Object, Object> loadingCache = CacheBuilder.newBuilder()
                 // 最大缓存条目数
                 .maximumSize(7)
                 // 超时时间
@@ -53,7 +56,8 @@ public class GuavaCacheDemo {
 
         try {
             System.out.println(loadingCache.get("validKey"));
-            System.out.println(loadingCache.get("invalidKey"));
+            Optional<String> result = (Optional<String>)loadingCache.get("invalidKey");
+            System.out.println(result.isPresent());
         } catch (Exception e) {
             e.printStackTrace();
         }
