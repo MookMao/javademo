@@ -3,7 +3,7 @@ package com.mook.java.jvm;
 /**
  * @Author: maojunkai
  * @Date: 2018/9/5 下午11:26
- * @Description: testGC()方法执行后，objA和objB会不会被GC？
+ * @Description: 检测jvm是否使用引用计数算法判定对象生死：testGC()方法执行后，objA和objB会不会被GC？
  */
 public class ReferenceCountingGC {
 
