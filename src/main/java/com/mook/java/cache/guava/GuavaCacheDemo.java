@@ -55,8 +55,9 @@ public class GuavaCacheDemo {
         System.out.println(loadingCache.getIfPresent("key6"));
 
         try {
-            System.out.println(loadingCache.get("validKey"));
-            Optional<String> result = (Optional<String>)loadingCache.get("invalidKey");
+            Optional<String> result = (Optional<String>) loadingCache.get("validKey");
+            System.out.println(result.get());
+            result = (Optional<String>)loadingCache.get("invalidKey");
             System.out.println(result.isPresent());
         } catch (Exception e) {
             e.printStackTrace();
