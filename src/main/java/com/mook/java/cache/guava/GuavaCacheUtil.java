@@ -44,6 +44,7 @@ public class GuavaCacheUtil {
      * Singleton线程安全的双重锁延迟初始化
      * synchronized 保证线程同步，也可以保证内存可见性
      * volatile 保证内存可见性，阻止指令重排(针对共享变量)
+     * volatile和synchronized保证可见性的语义不一样
      * @return
      */
     public LoadingCache<Object, Object> getLoadingCache() {
@@ -52,7 +53,7 @@ public class GuavaCacheUtil {
                 if (loadingCache == null) {
                     loadingCache = CacheBuilder.newBuilder()
                             // 最大缓存条目数
-                            .maximumSize(7)
+                            .maximumSize(7L)
                             // 超时时间
                             .expireAfterWrite(10L, TimeUnit.MINUTES)
                             // 移除监听器
