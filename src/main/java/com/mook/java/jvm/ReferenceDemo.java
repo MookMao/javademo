@@ -90,10 +90,8 @@ public class ReferenceDemo {
     }
 
     private static void testPhantomReferenceRegisteredWithQueue() {
-        Object obj = new Object();
         ReferenceQueue referenceQueue = new ReferenceQueue();
-        PhantomReference<Object> phantomReference = new PhantomReference<Object>(obj, referenceQueue);
-        obj = null;
+        PhantomReference<Object> phantomReference = new PhantomReference<Object>(new byte[1024*1024*4], referenceQueue);
         System.gc();
         Reference<Object> reference = null;
         try {
@@ -105,8 +103,5 @@ public class ReferenceDemo {
             e.printStackTrace();
         }
 
-        if (phantomReference.isEnqueued()) {
-            System.out.println("this reference object has been enqueued");
-        }
     }
 }
