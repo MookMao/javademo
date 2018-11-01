@@ -37,12 +37,12 @@ public class DemoForRunningObj {
             field.setAccessible(true);
             field2.setAccessible(true);
             // 获取obj对象中用Field对象表示的域值
-            System.out.println((String) field.get(obj));
-            System.out.println((Double) field2.get(obj));
+            System.out.println("设置之前，name = " + (String) field.get(obj));
+            System.out.println("设置之前，salary = " + (Double) field2.get(obj));
 
             // 用一个新值设置obj对象中Field对象表示的域
             field.set(obj, "jackReflect");
-            System.out.println("设置之后：" + (String) field.get(obj));
+            System.out.println("设置之后，name = " + (String) field.get(obj));
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }

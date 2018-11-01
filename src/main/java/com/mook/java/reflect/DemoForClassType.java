@@ -41,7 +41,9 @@ public class DemoForClassType {
 
     public static void main(String[] args) {
         useClass();
+        System.out.println("-----------------");
         useClass2();
+        System.out.println("-----------------");
         useClass3();
     }
 }

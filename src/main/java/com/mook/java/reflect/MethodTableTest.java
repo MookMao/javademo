@@ -11,7 +11,7 @@ public class MethodTableTest {
     public static void main(String[] args) throws Exception
     {
         // get method pointers to the square and sqrt methods
-        Method square = MethodTableTest.class.getMethod("square", double.class);
+        Method square = MethodTableTest.class.getMethod("square", new Class[]{double.class});
         Method sqrt = Math.class.getMethod("sqrt", double.class);
 
         printTable(1, 10, 10, square);
