@@ -1,4 +1,4 @@
-package com.mook.java.reflect;
+package com.mook.java.lang.reflect;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

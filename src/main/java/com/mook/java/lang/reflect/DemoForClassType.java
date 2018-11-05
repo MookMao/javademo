@@ -1,4 +1,4 @@
-package com.mook.java.reflect;
+package com.mook.java.lang.reflect;
 
 /**
  * @Author: maojunkai
@@ -21,7 +21,7 @@ public class DemoForClassType {
     private static void useClass2() {
         try {
             // 参数必须是类名或接口名，否则会抛出已检查异常
-            Class aClass = Class.forName("com.mook.java.reflect.DemoForClassType");
+            Class aClass = Class.forName("com.mook.java.lang.reflect.DemoForClassType");
             System.out.println("Class对象（Class.forName）：" + aClass.getConstructors());
             System.out.println("Class对象（Class.forName）：" + aClass.newInstance());
         } catch (ClassNotFoundException e) {
