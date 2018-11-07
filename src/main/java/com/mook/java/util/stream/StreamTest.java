@@ -51,6 +51,9 @@ public class StreamTest {
     @Test
     public void test_map() {
         List<String> list = Stream.of("a", "b", "c").map(str -> str.toUpperCase()).collect(Collectors.toList());
+
+        // 类型上的实例方法引用
+        // 实例方法要通过对象来调用，方法引用对应Lambda，Lambda的第一个参数会成为调用实例方法的对象
         List<String> list2 = Stream.of("a", "b", "c").map(String::toUpperCase).collect(Collectors.toList());
         System.out.println(list);
     }
@@ -60,6 +63,7 @@ public class StreamTest {
      */
     @Test
     public void test_mapToInt() {
+        // 类型上的实例方法引用
         Integer sum = appleList.stream().mapToInt(Apple::getNum).sum();
         System.out.println(sum);
     }
@@ -71,6 +75,7 @@ public class StreamTest {
     public void test_flatMap() {
         // 如果有一个包含了多个集合的对象希望得到所有数字的集合，我们可以用flatMap：集合流合并
         List<Long> list = Stream.of(asList(1, 2), asList(3, 4))
+                // 类型上的实例方法引用
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
         List<Long> list2 = Stream.of(asList(1, 2), asList(3, 4))
@@ -87,6 +92,8 @@ public class StreamTest {
         );
         Stream<Integer> outputStream = inputStream.
                 flatMap((childList) -> childList.stream());
+        Stream<Integer> outputStream2 = inputStream.
+                flatMap(Collection::stream);
     }
 
     /**
@@ -104,6 +111,8 @@ public class StreamTest {
      * according to natural order.  If the elements of this stream are not
      * {@code Comparable}, a {@code java.lang.ClassCastException} may be thrown
      * when the terminal operation is executed.
+     *
+     * Comparable
      */
     @Test
     public void test_sorted() {
@@ -113,6 +122,7 @@ public class StreamTest {
 
     @Test
     public void test_sorted_comparator() {
+        // 倒序
         List<Apple> list = appleList.stream().sorted((o1, o2) -> o2.getNum() - o1.getNum()).collect(Collectors.toList());
         System.out.println(list);
     }
@@ -172,6 +182,11 @@ public class StreamTest {
         Stream.of("a", "ab", "abc")
                 .filter(value -> value.contains("b"))
                 .forEach(value -> System.out.println(value));
+
+        // 实例上的实例方法引用
+        Stream.of("a", "ab", "abc")
+                .filter(value -> value.contains("b"))
+                .forEach(System.out::println);
     }
 
     /**
