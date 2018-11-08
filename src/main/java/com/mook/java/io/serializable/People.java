@@ -1,4 +1,6 @@
-package com.mook.java.serializable;
+package com.mook.java.io.serializable;
+
+import java.io.Serializable;
 
 /**
  * @Author: maojunkai
@@ -7,6 +9,15 @@ package com.mook.java.serializable;
  */
 public class People {
     int num;
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
     public People(){
 //        num = 20;
         System.out.println("父类无参构造");
@@ -15,7 +26,9 @@ public class People {
         System.out.println("父类有参构造");
         this.num = num;
     }
+
+    @Override
     public String toString(){
-        return "num:"+num;
+        return "{" + "num:" + num + "}";
     }
 }

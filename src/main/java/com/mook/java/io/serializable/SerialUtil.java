@@ -1,4 +1,4 @@
-package com.mook.java.serializable;
+package com.mook.java.io.serializable;
 
 import java.io.*;
 
@@ -18,6 +18,8 @@ public class SerialUtil {
         Person person = new Person();
         person.setAge(12);
         person.setName("naruto");
+        // 设置父类属性，检测是否能被序列化
+        person.setNum(1111);
 
         try (FileOutputStream fileOutputStream = new FileOutputStream(new File(PATH));
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {

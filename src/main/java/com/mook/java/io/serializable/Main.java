@@ -1,4 +1,4 @@
-package com.mook.java.serializable;
+package com.mook.java.io.serializable;
 
 /**
  * @Author: maojunkai

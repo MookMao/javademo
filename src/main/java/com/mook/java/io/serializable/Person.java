@@ -1,4 +1,4 @@
-package com.mook.java.serializable;
+package com.mook.java.io.serializable;
 
 import java.io.Serializable;
 
@@ -57,7 +57,8 @@ public class Person extends People implements Serializable {
         return "Person{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
-                ", height=" + height + super.toString() +
+                ", height=" + height +
+                ", super=" + super.toString() +
                 '}';
     }
 }
