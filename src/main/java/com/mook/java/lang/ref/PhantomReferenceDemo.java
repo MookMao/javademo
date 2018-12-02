@@ -43,6 +43,7 @@ public class PhantomReferenceDemo {
         // false
         System.out.println(refQueue.poll() == referent);
         bytes = null;
+        System.out.println("第一次GC：");
         System.gc();
         // false(不确定，因为加入队列时间不确定)
         System.out.println(refQueue.poll() == referent);
@@ -52,6 +53,7 @@ public class PhantomReferenceDemo {
 
         // 需要手动将虚引用内的reference字段设为Null,垃圾收集器才会回收关联对象
         referent.clear();
+        System.out.println("第二次GC：");
         System.gc();
 
     }
