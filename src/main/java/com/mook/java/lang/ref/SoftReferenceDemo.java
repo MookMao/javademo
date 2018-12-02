@@ -1,5 +1,9 @@
 package com.mook.java.lang.ref;
 
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+
 import java.lang.ref.SoftReference;
 
 /**
@@ -14,6 +18,7 @@ import java.lang.ref.SoftReference;
  *
  * -Xms20M -Xmx20M -Xmn10M -XX:SurvivorRatio=8 -XX:+PrintGCDetails
  */
+@RunWith(JUnit4.class)
 public class SoftReferenceDemo {
 
     private static final int _1MB = 1024 * 1024;
@@ -21,7 +26,8 @@ public class SoftReferenceDemo {
     /**
      * 内存不紧缺，不会回收软引用关联的对象
      */
-    public static void test1(){
+    @Test
+    public void test1(){
         byte[] bytes = new byte[4 * _1MB];
         SoftReference<byte[]> softReference = new SoftReference<byte[]>(bytes);
         System.out.println("GC前：" + softReference.get());
@@ -37,7 +43,8 @@ public class SoftReferenceDemo {
     /**
      * 内存不足，回收软引用关联的对象
      */
-    private static void test2() {
+    @Test
+    public void test2() {
         SoftReference<byte[]> sr0 = new SoftReference<byte[]>(new byte[4 * _1MB]);
         SoftReference<byte[]> sr1 = new SoftReference<byte[]>(new byte[4 * _1MB]);
         SoftReference<byte[]> sr2 = new SoftReference<byte[]>(new byte[4 * _1MB]);
@@ -53,8 +60,4 @@ public class SoftReferenceDemo {
         System.out.println(sr5.get());
     }
 
-    public static void main(String[] args) {
-//        test1();
-        test2();
-    }
 }

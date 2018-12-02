@@ -1,5 +1,9 @@
 package com.mook.java.lang.ref;
 
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+
 import java.lang.ref.WeakReference;
 
 /**
@@ -9,11 +13,13 @@ import java.lang.ref.WeakReference;
  *
  * -Xms20M -Xmx20M -Xmn10M -XX:SurvivorRatio=8 -XX:+PrintGCDetails
  */
+@RunWith(JUnit4.class)
 public class WeakReferenceDemo {
 
     private static final int _1MB = 1024 * 1024;
 
-    public static void test1() {
+    @Test
+    public void test1() {
         WeakReference<byte[]> wr = new WeakReference<byte[]>(new byte[4 * _1MB]);
         System.out.println("GC前：" + wr.get());
 
@@ -22,6 +28,5 @@ public class WeakReferenceDemo {
     }
 
     public static void main(String[] args) {
-        test1();
     }
 }

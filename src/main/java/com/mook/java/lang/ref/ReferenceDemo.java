@@ -1,4 +1,8 @@
-package com.mook.java.jvm;
+package com.mook.java.lang.ref;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import java.lang.ref.*;
 
@@ -7,6 +11,7 @@ import java.lang.ref.*;
  * @Date: 2018/9/6 下午11:20
  * @Description:
  */
+@RunWith(JUnit4.class)
 public class ReferenceDemo {
     public static void main(String[] args) {
 //        testSoftReference();
@@ -20,7 +25,8 @@ public class ReferenceDemo {
     /**
      * -Xms10M -Xmx10M -Xmn5M -XX:+PrintGCDetails
      */
-    private static void soft() {
+    @Test
+    public void soft() {
         SoftReference[] softArr = new SoftReference[4];
         softArr[0] = new SoftReference<byte[]>(new byte[1024*1024*2]);
         System.out.println("GC 前===>"+softArr[0].get());
@@ -47,21 +53,24 @@ public class ReferenceDemo {
     /**
      * -Xms10M -Xmx10M -Xmn5M -XX:+PrintGCDetails
      */
-    private static void weak(){
+    @Test
+    public void weak(){
         WeakReference<Integer> weak = new WeakReference<Integer>(new Integer(100));
         System.out.println("GC 前===>"+weak.get());
         System.gc();
         System.out.println("GC 后===>"+weak.get());
     }
 
-    private static void testSoftReference() {
+    @Test
+    public void testSoftReference() {
         Object obj = new Object();
         SoftReference<Object> softReference = new SoftReference<Object>(obj);
         obj = null;
         System.out.println(softReference.get());
     }
 
-    private static void testSoftReferenceRegisteredWithQueue() {
+    @Test
+    public void testSoftReferenceRegisteredWithQueue() {
         Object obj = new Object();
         ReferenceQueue referenceQueue = new ReferenceQueue();
         SoftReference<Object> softReference = new SoftReference<Object>(obj, referenceQueue);
@@ -76,10 +85,13 @@ public class ReferenceDemo {
 
     }
 
-    private static void testWeakReferenceRegisteredWithQueue() {
+    @Test
+    public void testWeakReferenceRegisteredWithQueue() {
         Object obj = new Object();
+        System.out.println(obj);
         ReferenceQueue referenceQueue = new ReferenceQueue();
         WeakReference<Object> weakReference = new WeakReference<>(obj, referenceQueue);
+        System.out.println(weakReference);
         obj = null;
         System.gc();
         try {
