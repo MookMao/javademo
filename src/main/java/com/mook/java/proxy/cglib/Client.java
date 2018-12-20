@@ -7,6 +7,13 @@ import net.sf.cglib.proxy.Enhancer;
  * @Author: maojunkai
  * @Date: 2018/7/9 下午8:24
  * @Description:
+ * 值得注意的几点是：
+
+1）使用CGLib代理的类不能是final修饰的，因为代理类需要继承主题类；
+
+2）final修饰的方法不会被切入；
+
+3）如果主题类的构造函数不是默认空参数的，那么在使用Enhancer类create的时候，选择create(java.lang.Class[] argumentTypes, java.lang.Object[] arguments) 方法。
  */
 public class Client {
     public static void main(String[] args) {

@@ -9,14 +9,16 @@ import java.lang.reflect.Method;
  * @Description:
  */
 public class DynamicInvocationHandler implements InvocationHandler {
-    // 对真实对象的引用
+    /**
+     * 对真实对象的引用
+     */
     private Object target;
 
     public DynamicInvocationHandler(Object target) {
         this.target = target;
     }
 
-    // AOP
+    @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         // 目标方法之前执行
         System.out.println("Before DynamicProxy");

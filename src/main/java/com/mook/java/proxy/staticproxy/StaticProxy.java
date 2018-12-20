@@ -12,6 +12,7 @@ public class StaticProxy implements StaticHello {
         this.staticHello = staticHello;
     }
 
+    @Override
     public void say() {
         System.out.println("before say hello");
         staticHello.say();

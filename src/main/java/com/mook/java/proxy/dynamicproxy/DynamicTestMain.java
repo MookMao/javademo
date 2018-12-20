@@ -2,6 +2,7 @@ package com.mook.java.proxy.dynamicproxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
+import java.util.Arrays;
 
 /**
  * @Author: maojunkai
@@ -19,5 +20,11 @@ public class DynamicTestMain {
         proxyInstance.hello("动态代理");
 
         System.out.println("代理对象：" + proxyInstance.getClass().getName());
+        System.out.println("代理对象父类：" + proxyInstance.getClass().getSuperclass().getName());
+        System.out.println("代理对象实现的接口：");
+        Class[] interfaces = proxyInstance.getClass().getInterfaces();
+        Arrays.stream(interfaces).forEach(o -> {
+            System.out.println(o.getName());
+        });
     }
 }

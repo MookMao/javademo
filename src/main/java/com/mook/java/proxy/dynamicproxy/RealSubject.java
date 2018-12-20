@@ -6,6 +6,7 @@ package com.mook.java.proxy.dynamicproxy;
  * @Description:
  */
 public class RealSubject implements Subject {
+    @Override
     public void hello(String str) {
         System.out.println("hello: " + str);
     }
