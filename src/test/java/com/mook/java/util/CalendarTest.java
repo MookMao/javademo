@@ -126,5 +126,6 @@ public class CalendarTest {
         int thisDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) == 1 ? Calendar.SATURDAY : calendar.get(Calendar.DAY_OF_WEEK);
         calendar.add(Calendar.DAY_OF_MONTH, calendar.getFirstDayOfWeek() - thisDayOfWeek);
         System.out.println(calendar.getTime());
+        System.out.println(calendar.get(Calendar.DAY_OF_MONTH));
     }
 }
