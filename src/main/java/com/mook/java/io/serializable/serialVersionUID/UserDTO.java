@@ -9,7 +9,7 @@ import lombok.Data;
  */
 @Data
 public class UserDTO extends BaseDTO {
-//    private static final long serialVersionUID = 2L;
+//    private keyword final long serialVersionUID = 2L;
     private String userName;
 
     private String nickName;

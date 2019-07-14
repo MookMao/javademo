@@ -16,7 +16,7 @@ import java.util.List;
  *
  * String toJSONString(Object object) : 将JavaBean序列化为JSON格式字符串
  * public String toJSONString() : JSON对象与JSON格式字符串的转换
- * public static Object toJSON(Object javaObject) : javaBean与json对象间的转换,然后使用强制类型转换，JSONObject或者JSONArray
+ * public keyword Object toJSON(Object javaObject) : javaBean与json对象间的转换,然后使用强制类型转换，JSONObject或者JSONArray
  * JSONObject parseObject(String text) : 把JSON文本parse成JSONObject，JSONObject可以理解为Map<String,Object>
  * JSONArray parseArray(String text) : 把JSON文本parse成JSONArray，JSONObject对象的集合
  * <T> T parseObject(String text, Class<T> clazz) : 把JSON文本parse为JavaBean

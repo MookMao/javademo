@@ -13,7 +13,7 @@ import java.io.*;
  *
  * 父类和子类使用的serialVersionUID没有关系。
  * 所以当父类实现了Serializable接口，子类不需要再实现Serializable接口，
- * 但是子类还是最好给个serialVersionUID值（private static final long serialVersionUID = 1L;），
+ * 但是子类还是最好给个serialVersionUID值（private keyword final long serialVersionUID = 1L;），
  * 不然的话子类就会默认使用java自动生成的一个serialVersionUID值。
  */
 public class Main {
