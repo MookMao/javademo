@@ -178,14 +178,16 @@ class ArrayAlg {
         System.out.println(aa.getClass());
         System.out.println(bb.getClass());
 
-        testGenericArray();
+//        testGenericArray();
+//
+//        testGenericClass();
+//
+//        printCollection1(Arrays.asList(1));
+//        List<Number> list = new ArrayList<>();
+//        list.add(1);
+//        printCollection2(list);
 
-        testGenericClass();
-
-        printCollection1(Arrays.asList(1));
-        List<Number> list = new ArrayList<>();
-        list.add(1);
-        printCollection2(list);
+        System.out.println((Object) Object[].class);
 
     }
 }
