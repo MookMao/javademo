@@ -1,4 +1,4 @@
-package thread.wait;
+package com.mook.java.lang.wait;
 
 /**
  * @Author: maojunkai
