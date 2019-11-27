@@ -21,6 +21,8 @@ public class MookLock {
 
     private static final long valueOffset;
 
+    private Thread holdLock;
+
     private ConcurrentLinkedQueue<Thread> queue = new ConcurrentLinkedQueue<>();
 
     static {
@@ -35,21 +37,26 @@ public class MookLock {
 
     public void lock() {
         for (; ; ) {
+            if (state == 1 && holdLock == Thread.currentThread()) {
+                System.out.println(Thread.currentThread().getName() + " get lock");
+                break;
+            }
             if (state == 0 && unsafe.compareAndSwapInt(this, valueOffset, 0, 1)) {
+                holdLock = Thread.currentThread();
+                System.out.println(Thread.currentThread().getName() + " get lock");
                 break;
             }
             queue.offer(Thread.currentThread());
             LockSupport.park();
-            System.out.println(Thread.currentThread().getName());
         }
     }
 
     public void unLock() {
-        if (state != 0) {
-            if (queue.size() > 0) {
-                queue.stream().forEach(LockSupport::unpark);
+        if (holdLock == Thread.currentThread() && unsafe.compareAndSwapInt(this, valueOffset, 1, 0)) {
+            System.out.println(Thread.currentThread().getName() + " unLock");
+            for (int i = 0; i < queue.size(); i++) {
+                LockSupport.unpark(queue.poll());
             }
-            state = 0;
         }
     }
 }

@@ -6,7 +6,9 @@ public class TestMookLock {
     public static void main(String[] args) throws InterruptedException {
         new Thread1(lock).start();
         Thread.sleep(1000);
-        new Thread2(lock).start();
+        for (int i = 0; i < 100; i++) {
+            new Thread2(lock).start();
+        }
     }
 
     static class Thread1 extends Thread {
@@ -19,14 +21,12 @@ public class TestMookLock {
         @Override
         public void run() {
             lock.lock();
-            System.out.println(Thread.currentThread().getName() + " lock");
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             lock.unLock();
-            System.out.println(Thread.currentThread().getName() + " unLock");
         }
     }
 
@@ -40,9 +40,12 @@ public class TestMookLock {
         @Override
         public void run() {
             lock.lock();
-            System.out.println(Thread.currentThread().getName() + " lock");
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             lock.unLock();
-            System.out.println(Thread.currentThread().getName() + " unLock");
         }
     }
 }
