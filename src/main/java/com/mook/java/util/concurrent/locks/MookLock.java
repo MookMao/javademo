@@ -32,7 +32,9 @@ public class MookLock {
             unsafe = (Unsafe) field.get(null);
             valueOffset = unsafe.objectFieldOffset
                     (MookLock.class.getDeclaredField("state"));
-        } catch (Exception ex) { throw new Error(ex); }
+        } catch (Exception ex) {
+            throw new Error(ex);
+        }
     }
 
     public void lock() {

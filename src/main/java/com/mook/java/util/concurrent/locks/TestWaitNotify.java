@@ -9,7 +9,7 @@ import java.util.Queue;
  * 2.队列满时，生产者不能操作
  * 3.队列空时，消费者不能操作
  */
-public class Test {
+public class TestWaitNotify {
     private static final int QUEUE_SIZE = 10;
 
     private static final Queue<Integer> QUEUE = new PriorityQueue<>(QUEUE_SIZE);
