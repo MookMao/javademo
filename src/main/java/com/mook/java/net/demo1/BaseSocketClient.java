@@ -12,7 +12,7 @@ import java.net.Socket;
 public class BaseSocketClient {
     public static void main(String[] args) throws Exception{
         // 客户端请求连接数
-        final int length = 100;
+        final int length = 10;
         // 服务器名
         String host = "localhost";
         // 服务端的侦听端口
