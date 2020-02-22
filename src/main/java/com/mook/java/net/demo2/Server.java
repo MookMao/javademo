@@ -27,7 +27,7 @@ public class Server {
                 socket = serverSocket.accept();
                 // 设置read阻塞时限
                 socket.setSoTimeout(10);
-                // TODO 这里可以使用线程池
+
                 // 创建一个新的线程：一个请求对应一个线程来负责处理业务逻辑
                 ServerThread serverThread = new ServerThread(socket);
                 // 启动线程

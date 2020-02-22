@@ -57,12 +57,14 @@ public class NIOServer {
             // 第五步：在run方法中无限循环体内轮询准备就绪的Key
             while (true) {
                 try {
+                    // 在这里会阻塞,无论是连接还是客户端发送数据还是客户端关闭,这里都会触发
                     selector.select(1000);
                     Set<SelectionKey> selectedKeys = selector.selectedKeys();
                     Iterator<SelectionKey> it = selectedKeys.iterator();
                     SelectionKey key = null;
                     while (it.hasNext()) {
                         key = it.next();
+                        // 移除,防止重复处理
                         it.remove();
                         try {
                             if (key.isValid()) {

@@ -37,7 +37,7 @@ public class Server {
                     byteBuffer.get(bytes);
                     String content = new String(bytes);
                     System.out.println(content);
-                    byteBuffer.flip();
+                    byteBuffer.clear();
                 } else if (read == -1) {
                     iterator.remove();
                     socketChannel.close();
