@@ -28,7 +28,7 @@ public class Server {
                 // 设置read阻塞时限
                 socket.setSoTimeout(10);
 
-                // 创建一个新的线程：一个请求对应一个线程来负责处理业务逻辑
+                // 创建一个新的线程：一个连接对应一个线程来负责处理业务逻辑
                 ServerThread serverThread = new ServerThread(socket);
                 // 启动线程
                 serverThread.start();

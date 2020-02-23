@@ -27,6 +27,7 @@ public class Client {
                 // 测试服务端read阻塞等待
                 Thread.sleep(10000);
 
+                // 一直阻塞到写入操作系统或者w网络IO出现异常
                 out.writeUTF("用户名：whf;密码：789");
 
                 //3.获取输入流，并读取服务器端的响应信息

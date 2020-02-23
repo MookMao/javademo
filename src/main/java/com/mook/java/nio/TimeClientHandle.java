@@ -30,7 +30,7 @@ public class TimeClientHandle implements Runnable {
         try {
             //第一步：打开SocketChannel,用于创建客户端连接
             socketChannel = SocketChannel.open();
-            //第二步：设置SocketChannel为非阻塞模式
+            //第二步：设置SocketChannel为非阻塞模式,设置之后，就可以在异步模式下调用connect(), read() 和write()
             socketChannel.configureBlocking(false);
             //第三步：创建多路复用器（在Reactor线程中）
             selector = Selector.open();
@@ -45,7 +45,7 @@ public class TimeClientHandle implements Runnable {
     public void run() {
         try {
             // 第四步：socketChannel发起连接
-            if (socketChannel.connect(new InetSocketAddress(host, port))) {
+            if (socketChannel.connect(new InetSocketAddress(host, port))) { // SocketChannel在非阻塞模式下，此时调用connect()，该方法可能在连接建立之前就返回了
                 //第五步：如果直接连接成功，则注册到多路复用器上
                 socketChannel.register(selector, SelectionKey.OP_READ);
                 //第六步：发送请求消息，读应答
@@ -56,8 +56,9 @@ public class TimeClientHandle implements Runnable {
                 socketChannel.write(writeBuffer);
                 if (!writeBuffer.hasRemaining())
                     System.out.println("Send order 2 server succeed.");
-            } else
+            } else {
                 socketChannel.register(selector, SelectionKey.OP_CONNECT);
+            }
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
@@ -74,7 +75,7 @@ public class TimeClientHandle implements Runnable {
                     it.remove();
                     try {
                         if (key.isValid()) {
-                            //第八步：将连接成功的Channel注册到多路复用器上
+                            // 第八步：将连接成功的Channel注册到多路复用器上
                             // 判断是否连接成功
                             SocketChannel sc = (SocketChannel) key.channel();
                             if (key.isConnectable()) {
@@ -95,6 +96,7 @@ public class TimeClientHandle implements Runnable {
                             if (key.isReadable()) {
                                 //第九步：读取信息到缓冲区
                                 ByteBuffer readBuffer = ByteBuffer.allocate(1024);
+                                // 阻塞模式
                                 int readBytes = sc.read(readBuffer);
                                 if (readBytes > 0) {
                                     readBuffer.flip();
